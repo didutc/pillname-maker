@@ -397,16 +397,35 @@ class urlworker(QThread):
         num = self.index
         if 'b' in num:
             num =num[1:]
-        t = requests.get(
-            'http://mscoop.co.kr/site/estore/mscoop1/index.php?CID=goods_search&cPage=1&pageSize=40&orderby_type=6&FrontPageType=1&srh_keyfield=name&srh_keyword='+str(num)+'').text
-        doubleagent.report('h.html',t)
-        t = t.split('<br>'+str(num)+'&nbsp;')[1:]
-        
-        t = ''.join(t).split('?CID=goods_detail&CODE=')[1].split("'")[0]
+        num = str(num)
+        intcounter = len(num)
+        if intcounter < 4:
+            plus0 = 4 - intcounter
+            for li in range(0,plus0):
+                num = str(0) + num
+        headers = {
+                    'Upgrade-Insecure-Requests': '1',
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36',
 
-        url = 'http://mscoop.co.kr/site/estore/mscoop1/index.php?CID=goods_detail&CODE=' + \
-            str(t)
-        webbrowser.open(url)
+                    }
+
+        t = requests.get(
+            'http://www.msgood4u.com/html/search/search.php?skey=all&directsearch=y&searchTerm=&sword='+str(num)+'',headers=headers).text
+        htmlchunk_lst = t.split("<div class='space'>")[1:]
+
+        for htmlchunk in htmlchunk_lst:
+            link = htmlchunk.split("<div class='code'>")[1].split('상품코드 <span>')[1].split('</span>')[0]
+            if link == num:
+                targetchunk = htmlchunk
+                break
+        try:
+            link = targetchunk.split("<a href='")[1].split('>')[0]
+            imglink = targetchunk.split("<img src='")[1].split("'")[0]
+            webbrowser.open(link)
+
+        except:
+            pass
+
 
 
 class remover(QThread):
@@ -690,11 +709,29 @@ class pixworker(QThread):
             num = num[1:]
         if 'e' in num:
             num = num[1:]
-        t = requests.get(
-            'http://mscoop.co.kr/site/estore/mscoop1/index.php?CID=goods_search&cPage=1&pageSize=40&orderby_type=6&FrontPageType=1&srh_keyfield=name&srh_keyword='+str(num)+'').text
-        url = 'http:'+t.split('<br>'+str(num) +
-                              '&nbsp;')[1].split("<img  src='")[1].split("' class=")[0].replace('_M.', '_L.')
+        num = str(num)
+        intcounter = len(num)
+        if intcounter < 4:
+            plus0 = 4 - intcounter
+            for li in range(0,plus0):
+                num = str(0) + num
 
+
+        t = requests.get(
+            'http://www.msgood4u.com/html/search/search.php?skey=all&directsearch=y&searchTerm=&sword='+str(num)+'').text
+        htmlchunk_lst = t.split("<div class='space'>")[1:]
+
+        for htmlchunk in htmlchunk_lst:
+            link = htmlchunk.split("<div class='code'>")[1].split('상품코드 <span>')[1].split('</span>')[0]
+            if link == num:
+                targetchunk = htmlchunk
+                break
+        try:
+
+            url = targetchunk.split("<img src='")[1].split("'")[0]
+
+        except:
+            pass
         mem = requests.get(url).content
         b = BytesIO(mem)
 
