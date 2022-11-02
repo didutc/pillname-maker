@@ -395,7 +395,8 @@ class urlworker(QThread):
     def run(self):
 
         num = self.index
-
+        if 'b' in num:
+            num =num[1:]
         t = requests.get(
             'http://mscoop.co.kr/site/estore/mscoop1/index.php?CID=goods_search&cPage=1&pageSize=40&orderby_type=6&FrontPageType=1&srh_keyfield=name&srh_keyword='+str(num)+'').text
         doubleagent.report('h.html',t)
@@ -471,44 +472,164 @@ class pixworker(QThread):
         return img
 
     def save(self, num, final_list):
+        if num.isdigit():
 
-        li = doubleagent.whiterbg(final_list[0])
-        randomi = random.randrange(60, 100)
-        li.save('small//a'+str(num)+'.jpg', 'JPEG', quality=randomi)
-        li = doubleagent.whiterbg(final_list[1])
-        # randomi = random.randrange(60, 100)
-        # li.save('small//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
-        li = doubleagent.whiterbg(final_list[2])
-        randomi = random.randrange(60, 100)
-        li.save('small//a'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
-        li = doubleagent.whiterbg(final_list[3])
-        # randomi = random.randrange(60, 100)
-        # li.save('small//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
-        li = doubleagent.whiterbg(final_list[4])
-        randomi = random.randrange(60, 100)
-        li.save('small//a'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
-        li = doubleagent.whiterbg(final_list[5])
-        # randomi = random.randrange(60, 100)
-        # li.save('small//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[0])
+            randomi = random.randrange(60, 100)
+            li.save('small//a'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[1])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[2])
+            randomi = random.randrange(60, 100)
+            li.save('small//a'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[3])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[4])
+            randomi = random.randrange(60, 100)
+            li.save('small//a'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[5])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
 
-        li = doubleagent.whiterbg(final_list[0])
-        randomi = random.randrange(60, 100)
-        li.save('big//a'+str(num)+'.jpg', 'JPEG', quality=randomi)
-        li = doubleagent.whiterbg(final_list[1])
-        # randomi = random.randrange(60, 100)
-        # li.save('big//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
-        li = doubleagent.whiterbg(final_list[2])
-        randomi = random.randrange(60, 100)
-        li.save('big//a'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
-        li = doubleagent.whiterbg(final_list[3])
-        # randomi = random.randrange(60, 100)
-        # li.save('big//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
-        li = doubleagent.whiterbg(final_list[4])
-        randomi = random.randrange(60, 100)
-        li.save('big//a'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
-        li = doubleagent.whiterbg(final_list[5])
-        # randomi = random.randrange(60, 100)
-        # li.save('big//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[0])
+            randomi = random.randrange(60, 100)
+            li.save('big//a'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[1])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[2])
+            randomi = random.randrange(60, 100)
+            li.save('big//a'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[3])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[4])
+            randomi = random.randrange(60, 100)
+            li.save('big//a'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[5])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+
+        if 'b' in num:
+            num =num[1:]
+            li = doubleagent.whiterbg(final_list[0])
+            randomi = random.randrange(60, 100)
+            li.save('small//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[1])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[2])
+            randomi = random.randrange(60, 100)
+            li.save('small//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[3])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[4])
+            randomi = random.randrange(60, 100)
+            li.save('small//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[5])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+
+            li = doubleagent.whiterbg(final_list[0])
+            randomi = random.randrange(60, 100)
+            li.save('big//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[1])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[2])
+            randomi = random.randrange(60, 100)
+            li.save('big//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[3])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[4])
+            randomi = random.randrange(60, 100)
+            li.save('big//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[5])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+        if 'c' in num:
+            num =num[1:]
+            li = doubleagent.whiterbg(final_list[0])
+            randomi = random.randrange(60, 100)
+            li.save('small//c'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[1])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[2])
+            randomi = random.randrange(60, 100)
+            li.save('small//c'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[3])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[4])
+            randomi = random.randrange(60, 100)
+            li.save('small//c'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[5])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+
+            li = doubleagent.whiterbg(final_list[0])
+            randomi = random.randrange(60, 100)
+            li.save('big//c'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[1])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[2])
+            randomi = random.randrange(60, 100)
+            li.save('big//c'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[3])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[4])
+            randomi = random.randrange(60, 100)
+            li.save('big//c'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[5])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+        if 'd' in num:
+            num =num[1:]
+            li = doubleagent.whiterbg(final_list[0])
+            randomi = random.randrange(60, 100)
+            li.save('small//d'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[1])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[2])
+            randomi = random.randrange(60, 100)
+            li.save('small//d'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[3])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[4])
+            randomi = random.randrange(60, 100)
+            li.save('small//d'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[5])
+            # randomi = random.randrange(60, 100)
+            # li.save('small//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+
+            li = doubleagent.whiterbg(final_list[0])
+            randomi = random.randrange(60, 100)
+            li.save('big//d'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[1])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[2])
+            randomi = random.randrange(60, 100)
+            li.save('big//d'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[3])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'-2.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[4])
+            randomi = random.randrange(60, 100)
+            li.save('big//d'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+            li = doubleagent.whiterbg(final_list[5])
+            # randomi = random.randrange(60, 100)
+            # li.save('big//b'+str(num)+'-3.jpg', 'JPEG', quality=randomi)
+
 
     def logoplay(self, image_list, backgroundtext_list, triger):
         fusion_list = []
@@ -561,10 +682,19 @@ class pixworker(QThread):
         return final_list
 
     def urlparser(self, num):
+        if 'b' in num:
+            num = num[1:]
+        if 'c' in num:
+            num = num[1:]
+        if 'd' in num:
+            num = num[1:]
+        if 'e' in num:
+            num = num[1:]
         t = requests.get(
             'http://mscoop.co.kr/site/estore/mscoop1/index.php?CID=goods_search&cPage=1&pageSize=40&orderby_type=6&FrontPageType=1&srh_keyfield=name&srh_keyword='+str(num)+'').text
         url = 'http:'+t.split('<br>'+str(num) +
                               '&nbsp;')[1].split("<img  src='")[1].split("' class=")[0].replace('_M.', '_L.')
+
         mem = requests.get(url).content
         b = BytesIO(mem)
 
@@ -576,8 +706,6 @@ class pixworker(QThread):
         # pil_image=Image.fromarray(result)
         # pil_image.show()
         img = result.convert("RGBA")
-
-
 
         x, y = img.size
 
@@ -972,7 +1100,7 @@ class pixworker(QThread):
                 xw_list = []
                 
                 font = ImageFont.truetype(
-                    dir+'/Jalnan.ttf', 95)
+                    dir+'/Jalnan.ttf', 100)
 
                 for letter_list in row2_list:
 
