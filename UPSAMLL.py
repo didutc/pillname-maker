@@ -294,11 +294,11 @@ class MainWindow(QMainWindow):
             self.suffle1 = QComboBox()
 
             self.suffle1.addItems(
-                ['america', 'spain', 'canada', 'france', 'Germany', 'healthmark', 'void', 'userselect'])  # index 0
+                ['america',  'canada',  'haccp', 'healthmark', 'void', 'userselect'])  # index 0
             self.suffle2 = QComboBox()
 
             self.suffle2.addItems(
-                ['america', 'spain', 'canada', 'france', 'Germany', 'healthmark', 'void', 'userselect'])
+                ['america',  'canada',  'haccp', 'healthmark', 'void', 'userselect'])
             self.finishlayout.addWidget(
                 self.suffle1, 0, 1)
             self.finishlayout.addWidget(
@@ -651,8 +651,8 @@ class pixworker(QThread):
             target1 = Image.open('logos//canada.png')
         elif 'france' == triger[1]:
             target1 = Image.open('logos//france.png')
-        elif 'Germany' == triger[1]:
-            target1 = Image.open('logos//german.png')
+        elif 'haccp' == triger[1]:
+            target1 = Image.open('logos//haccp.png')
         elif 'healthmark' == triger[1]:
             target1 = Image.open('logos//healthmark.png')
         elif 'void' == triger[1]:
@@ -666,8 +666,8 @@ class pixworker(QThread):
             target2 = Image.open('logos//canada.png')
         elif 'france' == triger[2]:
             target2 = Image.open('logos//france.png')
-        elif 'Germany' == triger[2]:
-            target2 = Image.open('logos//german.png')
+        elif 'haccp' == triger[2]:
+            target2 = Image.open('logos//haccp.png')
         elif 'healthmark' == triger[2]:
             target2 = Image.open('logos//healthmark.png')
         elif 'void' == triger[2]:
@@ -709,11 +709,13 @@ class pixworker(QThread):
                     target = li
                     break
             img = target.split("<img src='")[1:][0].split(' ')[0]
+            img = img.replace("'",'')
             if not "http" in img:
                 img = 'http://www.msgood4u.com/'+img
 
-
+            print(img)
             mem = requests.get(img).content
+
             b = BytesIO(mem)
 
             img1 = Image.open(b)
