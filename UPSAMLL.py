@@ -163,7 +163,7 @@ class MainWindow(QMainWindow):
         print('ok')
         self.modi = True
         self.modiimg = QFileDialog.getOpenFileName(
-            None, 'OpenFile', filter='*.png')[0]
+            None, 'OpenFile', filter='*.png *.jpg')[0]
 
     def ruserious(self):
         reply = QMessageBox.question(self, 'Message', 'Are you sure to remove?',
@@ -262,12 +262,12 @@ class MainWindow(QMainWindow):
     
         if finalagent[3][1] == 'userselect':
             img = QFileDialog.getOpenFileName(
-                None, 'OpenFile', filter='*.png')[0]
+                None, 'OpenFile', filter='*.png *.jpg')[0]
             finalagent[3][1] = img
 
         if finalagent[3][2] == 'userselect':
             img = QFileDialog.getOpenFileName(
-                None, 'OpenFile', filter='*.png')[0]
+                None, 'OpenFile', filter='*.png *.jpg')[0]
             finalagent[3][2] = img
 
         try:
@@ -452,7 +452,9 @@ class pixworker(QThread):
                 self.index = self.index[:-1]
 
             else:
+                print('g')
                 img = self.urlparser(num)
+            print(len(self.index))
             xsize,ysize=img.size
             if not xsize == 1000:
                 img = img.resize((1000,1000))
@@ -473,7 +475,7 @@ class pixworker(QThread):
 
     def imgselect(self, num):
         img = QFileDialog.getOpenFileName(
-            None, 'OpenFile', filter='*.png')[0]
+            None, 'OpenFile', filter='*.png *.jpg')[0]
         img = Image.open(img)
         return img
 
