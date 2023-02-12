@@ -812,10 +812,19 @@ class pixworker(QThread):
             textint = li[intstart:intend+1]
             textint_list.append(textint)
         # version1
+
         var1_list = []
+        ontriger = True
         for li1, li2 in zip(itemcounter, textint_list):
-            li = li1.replace(li2, str(int(li2)))
+            if ontriger == True:
+                li = li1.replace(li2, str(int(li2)))
+                var1_list.append(li)
+                ontriger = False
+                continue
+            li = li1.replace(li2, str(int(li2)*2))
             var1_list.append(li)
+
+        var1_list.insert(1, 'x2통 ')
         var2_list = []
         ontriger = True
         for li1, li2 in zip(itemcounter, textint_list):
@@ -824,10 +833,10 @@ class pixworker(QThread):
                 var2_list.append(li)
                 ontriger = False
                 continue
-            li = li1.replace(li2, str(int(li2)*2))
+            li = li1.replace(li2, str(int(li2)*4))
             var2_list.append(li)
 
-        var2_list.insert(1, 'x2통 ')
+        var2_list.insert(1, 'x4통 ')
         var3_list = []
         ontriger = True
         for li1, li2 in zip(itemcounter, textint_list):
@@ -836,18 +845,18 @@ class pixworker(QThread):
                 var3_list.append(li)
                 ontriger = False
                 continue
-            li = li1.replace(li2, str(int(li2)*3))
+            li = li1.replace(li2, str(int(li2)*6))
             var3_list.append(li)
-        var3_list.insert(1, 'x3통 ')
+        var3_list.insert(1, 'x6통 ')
 
         testttt = arg[1][1][:]
         testttt.insert(2, 'orange')
         testttt.insert(3, '1')
         var1_list[0] = var1_list[0]+' '
         underpreinput_list_list = [var1_list, var2_list, var3_list]
-        underprecolor_list_list = [['yellow', 'orange'], [
+        underprecolor_list_list = [['yellow', 'orange', 'yellow'], [
             'yellow', 'orange', 'yellow'], ['yellow', 'orange', 'yellow']]
-        underprerow_list_list = [['1', '1'], ['1', '1', '1'], ['1', '1', '1']]
+        underprerow_list_list = [['1', '1','1'], ['1', '1', '1'], ['1', '1', '1']]
         for underpreinput_list, underprecolor_list, underprerow_list in zip(underpreinput_list_list, underprecolor_list_list, underprerow_list_list):
             preinput_list = arg[0][0]
 
